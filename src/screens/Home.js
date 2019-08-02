@@ -20,10 +20,10 @@ class Home extends Component {
     render() {
         return (
             <Container>
-                <Header>
+                <Header style={{backgroundColor: '#3CB371'}}>
                     <Body style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Title>App Ongkir</Title>
-                        <Subtitle>Input Data</Subtitle>
+                        <Title style={{color: '#fff'}}>App Ongkir</Title>
+                        <Subtitle style={{color: '#fff'}}>Input Data</Subtitle>
                     </Body>
                 </Header>
 
@@ -39,7 +39,7 @@ class Home extends Component {
                                         mode="dropdown"
                                         style={{ width: undefined }}
                                         placeholder="Pilih Provinsi Asal"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderStyle={{ color: '#3CB371' }}
                                     >
                                         <Picker.Item label="Wallet" value="key0" />
                                         <Picker.Item label="ATM Card" value="key1" />
@@ -62,7 +62,7 @@ class Home extends Component {
                                         mode="dropdown"
                                         style={{ width: undefined }}
                                         placeholder="Pilih Kota Tujuan"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderStyle={{ color: '#3CB371' }}
                                     >
                                         <Picker.Item label="ATM Card" value="key1" />
                                         <Picker.Item label="Debit Card" value="key2" />
@@ -95,9 +95,9 @@ class Home extends Component {
                                 <Item picker>
                                     <Picker
                                         mode="dropdown"
-                                        style={{ width: undefined }}
+                                        style={{ width: undefined, color: '#3CB371' }}
                                         placeholder="Pilih Kurir"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderStyle={{ colorLabel: '#3CB371' }}
                                     >
                                         <Picker.Item label="JNE" value="jne" />
                                         <Picker.Item label="TIKI" value="tiki" />
@@ -110,10 +110,10 @@ class Home extends Component {
 
                 </Content>
                 <View style={{justifyContent: 'flex-end'}}>
-                    <Button block style={{margin: 10}}
+                    <Button rounded block style={{margin: 10, backgroundColor: '#3CB371'}}
                         onPress={()=>this.props.navigation.navigate('DetailScreen')}
                     >
-                        <Text>Cek Ongkir</Text>
+                        <Text style={{color: '#fff'}}>Cek Ongkir</Text>
                     </Button>
                 </View>
             </Container>
