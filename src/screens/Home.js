@@ -6,14 +6,15 @@ import {
     StyleSheet
 } from "react-native";
 import { 
-    Container, Header, Left, Body, Title, 
-    Subtitle, Right, Content, Card, CardItem,
-    Item, Picker, Icon, Label, Input, Button,
+    Container, Header, Body, Title, 
+    Subtitle, Content, Card, CardItem,
+    Item, Picker, Label, Input, Button,
 } from 'native-base';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
+    'Warning: componentWillUpdate is deprecated',
 ]);
 
 class Home extends Component {
