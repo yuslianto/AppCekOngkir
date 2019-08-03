@@ -11,6 +11,8 @@ import {
     Item, Picker, Label, Input, Button,
 } from 'native-base';
 
+import {URL, KEY} from '../components/Const';
+
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
@@ -18,7 +20,49 @@ YellowBox.ignoreWarnings([
 ]);
 
 class Home extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            provinces: []
+        }
+    }
+    componentDidMount() {
+        this.onLoadProvince();
+    }
+
+    onLoadProvince = () => {
+        fetch(URL+'/province',{
+            method: 'GET',
+            headers: {
+                'key': KEY
+            }
+        }).then((response)=>response.json()).then((responseData) =>{
+            console.log(responseData)
+            let status = responseData['rajaongkir']['status']['code'];
+            if (status==200) {
+                this.setState({
+                    provinces: responseData['rajaongkir']['results']
+                })
+            }
+        })
+    }
+
     render() {
+
+        let provinceItems = <View></View>        
+        if (this.state.provinces) {
+            provinceItems = this.state.provinces.map(prov => {
+                return(
+                    <Picker.Item
+                        key={prov.province_id}
+                        label={prov.province}
+                        value={prov}
+                    />
+                );
+            })
+        }
+
         return (
             <Container>
                 <Header style={{backgroundColor: '#3CB371'}}>
@@ -39,10 +83,21 @@ class Home extends Component {
                                     <Picker
                                         mode="dropdown"
                                         style={{ width: undefined }}
-                                        placeholder="Pilih Provinsi Asal"
+                                        placeholder="Pilih Provinsi"
                                         placeholderStyle={{ color: '#3CB371' }}
                                     >
-                                        <Picker.Item label="Wallet" value="key0" />
+                                        <Picker.Item label="Pilih Provinsi" value=""/>
+                                        {provinceItems}
+                                    </Picker>
+                                </Item>
+                                <Item picker>
+                                    <Picker
+                                        mode="dropdown"
+                                        style={{ width: undefined }}
+                                        placeholder="Pilih Kota"
+                                        placeholderStyle={{ color: '#3CB371' }}
+                                    >
+                                        <Picker.Item label="Pilih Kota" value=""/>
                                         <Picker.Item label="ATM Card" value="key1" />
                                         <Picker.Item label="Debit Card" value="key2" />
                                         <Picker.Item label="Credit Card" value="key3" />
@@ -58,13 +113,30 @@ class Home extends Component {
                         </CardItem>
                         <CardItem>
                             <Body>
-                                <Item picker style={{marginTop: 10}}>
+                            <Item picker>
                                     <Picker
                                         mode="dropdown"
                                         style={{ width: undefined }}
-                                        placeholder="Pilih Kota Tujuan"
+                                        placeholder="Pilih Provinsi"
                                         placeholderStyle={{ color: '#3CB371' }}
                                     >
+                                        <Picker.Item label="Pilih Provinsi" value=""/>
+                                        <Picker.Item label="Wallet" value="key0" />
+                                        <Picker.Item label="ATM Card" value="key1" />
+                                        <Picker.Item label="Debit Card" value="key2" />
+                                        <Picker.Item label="Credit Card" value="key3" />
+                                        <Picker.Item label="Net Banking" value="key4" />
+                                    </Picker>
+                                </Item>
+                                <Item picker>
+                                    <Picker
+                                        mode="dropdown"
+                                        style={{ width: undefined }}
+                                        placeholder="Pilih Kota"
+                                        placeholderStyle={{ color: '#3CB371' }}
+                                    >
+                                        <Picker.Item label="Pilih Kota" value=""/>
+                                        <Picker.Item label="Wallet" value="key0" />
                                         <Picker.Item label="ATM Card" value="key1" />
                                         <Picker.Item label="Debit Card" value="key2" />
                                         <Picker.Item label="Credit Card" value="key3" />

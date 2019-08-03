@@ -40,7 +40,7 @@ class Detail extends Component {
                     <List>
                         <ListItem thumbnail>
                             <Left>
-                                <Thumbnail square source={{uri: 'https://i.pinimg.com/originals/8d/3b/f8/8d3bf8fda0c800bde077815241705bf3.png'}}/>
+                                <Thumbnail source={{uri: 'https://i.pinimg.com/originals/8d/3b/f8/8d3bf8fda0c800bde077815241705bf3.png'}}/>
                             </Left>
                             <Body>
                                 <Text>JNE</Text>
