@@ -26,7 +26,7 @@ class Detail extends Component {
                             onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon
-                                style={{color: '#FFF'}}
+                                style={{color: '#FFF', height: 25, width: 25}}
                                 type="AntDesign" name="back"
                             />
                         </Button>
