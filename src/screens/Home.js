@@ -173,7 +173,7 @@ class Home extends Component {
                 <Content padder>
                     <Card>
                         <CardItem header>
-                            <Text>Alamat Asal</Text>
+                            <Text style={styles.textStyle}>Alamat Asal</Text>
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -197,6 +197,7 @@ class Home extends Component {
                                         placeholder="Pilih Kota"
                                         placeholderStyle={{ color: '#3CB371' }}
                                         selectedValue={this.state.selectedOriginCity}
+                                        //onValueChange={this.onOCityChange}
                                     >
                                         <Picker.Item label="Pilih Kota" value=""/>
                                         {originCityItem}
@@ -207,7 +208,7 @@ class Home extends Component {
                     </Card>
                     <Card>
                         <CardItem header>
-                            <Text>Alamat Tujuan</Text>
+                            <Text style={styles.textStyle}>Alamat Tujuan</Text>
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -231,7 +232,7 @@ class Home extends Component {
                                         placeholder="Pilih Kota"
                                         placeholderStyle={{ color: '#3CB371' }}
                                         selectedValue={this.state.selectedDestinationCity}
-                                        //onValueChange={this.onDestinationProvinceChange}
+                                        //onValueChange={this.onDestinationCityChange}
                                     >
                                         <Picker.Item label="Pilih Kota" value=""/>
                                         {destinationCityItem}
@@ -242,7 +243,7 @@ class Home extends Component {
                     </Card>
                     <Card>
                         <CardItem header>
-                            <Text>Berat Paket</Text>
+                            <Text style={styles.textStyle}>Berat Paket</Text>
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -255,7 +256,7 @@ class Home extends Component {
                     </Card>
                     <Card>
                         <CardItem header>
-                            <Text>Kurir</Text>
+                            <Text style={styles.textStyle}>Kurir</Text>
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -280,7 +281,7 @@ class Home extends Component {
                     <Button rounded block style={{margin: 10, backgroundColor: '#3CB371'}}
                         onPress={()=>this.props.navigation.navigate('DetailScreen')}
                     >
-                        <Text style={{color: '#fff'}}>Cek Ongkir</Text>
+                        <Text style={[styles.textStyle,{color: '#fff'}]}>Cek Ongkir</Text>
                     </Button>
                 </View>
             </Container>
@@ -294,5 +295,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    textStyle:{
+        fontSize: 16,
+        fontWeight: 'bold'
     }
 });
