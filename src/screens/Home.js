@@ -120,6 +120,17 @@ class Home extends Component {
         })
     }
 
+    onNavigationToDetail = () => {
+        let params = {
+            originCities: this.state.selectedOriginCity.city_id,
+            destinationCities: this.state.selectedDestinationCity.city_id,
+            weight: this.state.weight,
+            courier: this.state.courier
+        }
+        console.log(params);
+        this.props.navigation.navigate('DetailScreen',{data: params})
+    }
+
     render() {
 
         let provinceItems = <View></View>  
@@ -265,14 +276,21 @@ class Home extends Component {
                             <Body>
                                 <Item floatingLabel>
                                     <Label>Grams</Label>
-                                    <Input/>
+                                    <Input 
+                                        onChangeText={(val)=>this.setState({weight:val})}
+                                        maxLength={6}
+                                    />
                                 </Item>
                             </Body>
                         </CardItem>
                     </Card>
                     <Card>
                         <CardItem header>
-                            <Text style={styles.textStyle}>Kurir</Text>
+                            <Text 
+                                style={styles.textStyle}
+                            >
+                                Kurir
+                            </Text>
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -282,6 +300,8 @@ class Home extends Component {
                                         style={{ width: undefined, color: '#3CB371' }}
                                         placeholder="Pilih Kurir"
                                         placeholderStyle={{ colorLabel: '#3CB371' }}
+                                        selectedValue={this.state.courier}
+                                        onValueChange={(val)=>this.setState({courier:val})}
                                     >
                                         <Picker.Item label="JNE" value="jne" />
                                         <Picker.Item label="TIKI" value="tiki" />
@@ -295,7 +315,7 @@ class Home extends Component {
                 </Content>
                 <View style={{justifyContent: 'flex-end'}}>
                     <Button rounded block style={{margin: 10, backgroundColor: '#3CB371'}}
-                        onPress={()=>this.props.navigation.navigate('DetailScreen')}
+                        onPress={()=>this.onNavigationToDetail()}
                     >
                         <Text style={[styles.textStyle,{color: '#fff'}]}>Cek Ongkir</Text>
                     </Button>
