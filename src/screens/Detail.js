@@ -11,13 +11,81 @@ import {
     Title, Button, Icon
 } from "native-base";
 
+import {URL, KEY, LOGO} from '../components/Const';
+
+
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
 ]);
 
 class Detail extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            results: []
+        }
+    }
+
+    componentDidMount() {
+        this.cekOngkosKirim();
+    }
+
+    cekOngkosKirim = () => {
+        let params = this.props.navigation.data;
+        const formData = new URLSearchParams();
+        formData.append('origin', params.originCity);
+        formData.append('destination', params.destinationCity);
+        formData.append('weight', params.weight);
+        formData.append('courier', params.courier);
+
+        fetch(URL+'/cost', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded',
+                'key': KEY
+            },
+            body: formData.toString()
+        })
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            let status = responseData['rajaongkir']['status']['code'];
+            console.log('response data')
+            console.log(responseData);
+            if (status === 200) {
+                this.setState({
+                    results: responseData['rajaongkir']['results'][0]['costs']
+                })
+            }
+        });
+        console.log('console results')
+        console.log(this.state.results);
+
+    }
+
     render() {
+        let costItem = <View></View>
+        if (this.state.results) {
+            costItem: this.state.results.map(item => {
+                return(
+                    <ListItem thumbnail key={new Date().getMilliseconds+Math.random()}>
+                        <Left>
+                            <Thumbnail source={{uri: LOGO[this.props.data.courier]}}/>
+                        </Left>
+                        <Body>
+                            <Text>{item.service}</Text>
+                            <Text note>{item.description}</Text>
+                            <Text>{item.cost[0].etd}</Text>
+                        </Body>
+                        <Right>
+                            <Text>{item.cost[0].value}</Text>
+                        </Right>
+                    </ListItem>
+                )
+            })
+        }
+
         return (
             <Container style={styles.container}>
                 <Header style={{backgroundColor: '#3CB371'}}>
@@ -38,18 +106,7 @@ class Detail extends Component {
 
                 <Content>
                     <List>
-                        <ListItem thumbnail>
-                            <Left>
-                                <Thumbnail source={{uri: 'https://i.pinimg.com/originals/8d/3b/f8/8d3bf8fda0c800bde077815241705bf3.png'}}/>
-                            </Left>
-                            <Body>
-                                <Text>JNE</Text>
-                                <Text>Harga</Text>
-                            </Body>
-                            <Right>
-                                <Text>Harga</Text>
-                            </Right>
-                        </ListItem>
+                        {costItem}
                     </List>
                 </Content>
             </Container>

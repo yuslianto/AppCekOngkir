@@ -120,10 +120,11 @@ class Home extends Component {
         })
     }
 
+    //navigate to screen detail
     onNavigationToDetail = () => {
         let params = {
-            originCities: this.state.selectedOriginCity.city_id,
-            destinationCities: this.state.selectedDestinationCity.city_id,
+            originCity: this.state.selectedOriginCity.city_id,
+            destinationCity: this.state.selectedDestinationCity.city_id,
             weight: this.state.weight,
             courier: this.state.courier
         }
