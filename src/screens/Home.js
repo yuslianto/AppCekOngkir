@@ -58,6 +58,7 @@ class Home extends Component {
         })
     }
 
+    //pilih provinsi asal
     onOriginProvinceChange = (val) => {
         this.setState({
             selectedOriginProvince: val
@@ -82,6 +83,14 @@ class Home extends Component {
         });
     }
 
+    //pilih kota asal
+    onOCityChange = (val) => {
+        this.setState({
+            selectedOriginCity: val
+        })
+    }
+
+    //pilih provinsi tujuan
     onDestinationProvinceChange = (val) => {
         this.setState({
             selectedDestinationProvince: val
@@ -102,6 +111,13 @@ class Home extends Component {
                 }
             })
         });
+    }
+
+    //pilih kota tujuan
+    onDestinationCityChange = (val) => {
+        this.setState({
+            selectedDestinationCity: val
+        })
     }
 
     render() {
@@ -197,7 +213,7 @@ class Home extends Component {
                                         placeholder="Pilih Kota"
                                         placeholderStyle={{ color: '#3CB371' }}
                                         selectedValue={this.state.selectedOriginCity}
-                                        //onValueChange={this.onOCityChange}
+                                        onValueChange={this.onOCityChange}
                                     >
                                         <Picker.Item label="Pilih Kota" value=""/>
                                         {originCityItem}
@@ -232,7 +248,7 @@ class Home extends Component {
                                         placeholder="Pilih Kota"
                                         placeholderStyle={{ color: '#3CB371' }}
                                         selectedValue={this.state.selectedDestinationCity}
-                                        //onValueChange={this.onDestinationCityChange}
+                                        onValueChange={this.onDestinationCityChange}
                                     >
                                         <Picker.Item label="Pilih Kota" value=""/>
                                         {destinationCityItem}
