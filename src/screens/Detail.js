@@ -33,12 +33,13 @@ class Detail extends Component {
     }
 
     cekOngkosKirim = () => {
-        let params = this.props.navigation.data;
+        let params = this.props.navigation.state.params.data;
         const formData = new URLSearchParams();
         formData.append('origin', params.originCity);
         formData.append('destination', params.destinationCity);
         formData.append('weight', params.weight);
         formData.append('courier', params.courier);
+        //console.warn(params.courier);
 
         fetch(URL+'/cost', {
             method: 'POST',
@@ -57,21 +58,22 @@ class Detail extends Component {
                 this.setState({
                     results: responseData['rajaongkir']['results'][0]['costs']
                 })
+                console.log('console results')
+                console.log(this.state.results);
             }
         });
-        console.log('console results')
-        console.log(this.state.results);
 
     }
 
     render() {
         let costItem = <View></View>
         if (this.state.results) {
-            costItem: this.state.results.map(item => {
+            costItem = this.state.results.map(item => {
+                let params = this.props.navigation.state.params.data;
                 return(
                     <ListItem thumbnail key={new Date().getMilliseconds+Math.random()}>
                         <Left>
-                            <Thumbnail source={{uri: LOGO[this.props.data.courier]}}/>
+                            <Thumbnail source={{uri: LOGO[params.courier]}}/>
                         </Left>
                         <Body>
                             <Text>{item.service}</Text>

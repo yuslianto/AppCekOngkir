@@ -6,9 +6,9 @@ import {
     StyleSheet
 } from "react-native";
 import { 
-    Container, Header, Body, Title, 
+    Container, Header, Body, Title, Thumbnail,
     Subtitle, Content, Card, CardItem,
-    Item, Picker, Label, Input, Button,
+    Item, Picker, Label, Input, Button, Right,
 } from 'native-base';
 
 import {URL, KEY} from '../components/Const';
@@ -50,7 +50,7 @@ class Home extends Component {
         .then((responseData) =>{
             console.log(responseData)
             let status = responseData['rajaongkir']['status']['code'];
-            if (status==200) {
+            if (status===200) {
                 this.setState({
                     provinces: responseData['rajaongkir']['results']
                 })
@@ -74,7 +74,7 @@ class Home extends Component {
                 console.log('After change')
                 console.log(responseData)
                 let status = responseData['rajaongkir']['status']['code'];
-                if (status==200) {
+                if (status===200) {
                     this.setState({
                         originCities: responseData['rajaongkir']['results']
                     })
@@ -104,7 +104,7 @@ class Home extends Component {
             .then((response) => response.json())
             .then((responseData) => {
                 let status = responseData['rajaongkir']['status']['code'];
-                if (status==200) {
+                if (status===200) {
                     this.setState({
                         destinationCities: responseData['rajaongkir']['results']
                     })
@@ -128,8 +128,17 @@ class Home extends Component {
             weight: this.state.weight,
             courier: this.state.courier
         }
-        console.log(params);
-        this.props.navigation.navigate('DetailScreen',{data: params})
+        //console.log('data yang dikirim')
+        //console.log(params);
+        if (params!=null) {
+            this.props.navigation.navigate('DetailScreen',{data: params})
+        } else {
+            return(
+                <View style={{flex:1}}>
+                    <Text>Jangan ada yang kosong</Text>
+                </View>
+            )
+        }
     }
 
     render() {
@@ -280,6 +289,7 @@ class Home extends Component {
                                     <Input 
                                         onChangeText={(val)=>this.setState({weight:val})}
                                         maxLength={6}
+                                        keyboardType='numeric'
                                     />
                                 </Item>
                             </Body>
@@ -304,6 +314,7 @@ class Home extends Component {
                                         selectedValue={this.state.courier}
                                         onValueChange={(val)=>this.setState({courier:val})}
                                     >
+                                        <Picker.Item label="Pilih Kurir" value="" />
                                         <Picker.Item label="JNE" value="jne" />
                                         <Picker.Item label="TIKI" value="tiki" />
                                         <Picker.Item label="POS" value="pos" />
