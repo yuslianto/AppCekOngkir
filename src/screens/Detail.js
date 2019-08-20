@@ -10,6 +10,7 @@ import {
     Left, Thumbnail, Body, Right, Header, 
     Title, Button, Icon
 } from "native-base";
+import NumberFormat from 'react-number-format';
 
 import {URL, KEY, LOGO} from '../components/Const';
 
@@ -81,7 +82,14 @@ class Detail extends Component {
                             <Text>{item.cost[0].etd}</Text>
                         </Body>
                         <Right>
-                            <Text>{item.cost[0].value}</Text>
+                            <NumberFormat
+                                value={item.cost[0].value}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                prefix={'Rp '}
+                                suffix={'.00'}
+                                renderText={value=><Text>{value}</Text>}
+                            />
                         </Right>
                     </ListItem>
                 )
