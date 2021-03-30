@@ -4784,6 +4784,12 @@ react-navigation@^3.11.1:
     react-navigation-stack "~1.4.0"
     react-navigation-tabs "~1.1.4"
 
+react-number-format@^4.2.0:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.5.2.tgz#5363e2a97ddb0e08fa2b7dd24b8319b6fb83519a"
+  dependencies:
+    prop-types "^15.7.2"
+
 react-proxy@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
@@ -5950,8 +5956,8 @@ xtend@~4.0.1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
 
 y18n@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
 
 "y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"
